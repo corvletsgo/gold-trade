@@ -1,0 +1,1128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" type="image/webp" href="icon.webp" />
+    <title>Corv's Gold Trade — 20% Off When You Pay in Gold or Silver</title>
+    <meta name="description" content="Corv's Gold Trade: real EGO tools, parts, and collectibles priced in cash and in gold. Pay in gold and take 20% off the cash price. Silver works on anything $50 and under. Google Corv's Gold Trade." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #0c0b09;
+        --bg-2: #14120e;
+        --panel: #1a1712;
+        --panel-2: #211d16;
+        --line: #2e2a20;
+        --line-gold: #4a3d1e;
+        --ink: #f2ecdd;
+        --ink-2: #c9c0ab;
+        --ink-3: #948b76;
+        --gold: #d4a92c;
+        --gold-bright: #f0c94a;
+        --gold-deep: #9a7a1c;
+        --silver: #c7ccd4;
+        --silver-dim: #8f97a3;
+        --radius: 14px;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Archivo", system-ui, -apple-system, sans-serif;
+        font-size: 16px;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+      .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+      a { color: var(--gold-bright); }
+
+      /* ---------- eBay fast lane (top strip) ---------- */
+      .ebay-strip {
+        background: #f5f1e4;
+        color: #17140c;
+        border-bottom: 1px solid var(--line-gold);
+      }
+      .ebay-strip .wrap {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .ebay-strip .cash-line { font-size: 15.5px; font-weight: 700; margin: 0; }
+      .ebay-strip .cash-line b { font-weight: 900; }
+      .ebay-strip .gold-line { font-size: 13.5px; font-weight: 600; color: #5d543e; margin: 0; }
+      .btn-ebay {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        background: #0064d2;
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 15px;
+        padding: 11px 20px;
+        border-radius: 10px;
+        border: 1px solid transparent;
+        white-space: nowrap;
+      }
+      .btn-ebay:hover { background: #0053ae; }
+      @media (max-width: 560px) {
+        .ebay-strip .wrap { gap: 8px 14px; }
+        .ebay-strip .cash-line { flex-basis: 100%; }
+        .btn-ebay { flex: 1 1 auto; justify-content: center; font-size: 16px; padding: 13px 20px; }
+      }
+
+      /* ---------- Draft banner ---------- */
+      .draft-banner {
+        background: var(--gold);
+        color: #1a1503;
+        text-align: center;
+        font-weight: 800;
+        font-size: 13px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 8px 16px;
+      }
+
+      .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        border-bottom: 1px solid var(--line);
+        background:
+          radial-gradient(720px 340px at 85% -60px, rgba(212, 169, 44, 0.13), transparent 65%),
+          var(--bg);
+        padding: 52px 0 40px;
+      }
+      .hero .kicker {
+        display: inline-block;
+        border: 1px solid var(--line-gold);
+        color: var(--gold-bright);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        padding: 6px 12px;
+        border-radius: 999px;
+        margin-bottom: 20px;
+      }
+      .hero h1 {
+        margin: 0 0 16px;
+        font-size: clamp(34px, 7.2vw, 62px);
+        line-height: 1.04;
+        font-weight: 900;
+        letter-spacing: -0.015em;
+        max-width: 15ch;
+      }
+      .hero h1 .gold { color: var(--gold-bright); }
+      .brand-name {
+        margin: 0 0 14px;
+        font-size: clamp(42px, 9vw, 76px);
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        line-height: 1.0;
+        color: var(--gold-bright);
+      }
+
+      /* ---------- Simple version + calculator ---------- */
+      .simple-lines { display: grid; gap: 14px; margin-bottom: 34px; }
+      .simple-lines p {
+        margin: 0;
+        font-size: clamp(21px, 4.4vw, 30px);
+        font-weight: 800;
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+        max-width: 34ch;
+      }
+      .simple-lines p .gold { color: var(--gold-bright); }
+      .simple-lines p .silver { color: var(--silver); }
+      .gets-title { margin: 0 0 14px; font-size: clamp(20px, 3.6vw, 26px); font-weight: 900; }
+      .gets {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        overflow: hidden;
+        margin-bottom: 30px;
+      }
+      .gets th, .gets td {
+        text-align: left;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--line);
+        font-size: 16.5px;
+        vertical-align: baseline;
+      }
+      .gets tr:last-child td { border-bottom: none; }
+      .gets th {
+        font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+        color: var(--ink-3); background: var(--bg-2);
+      }
+      .gets td.bring { font-weight: 800; white-space: nowrap; }
+      .gets td.bring small { display: block; font-weight: 500; color: var(--ink-3); font-size: 13px; white-space: normal; }
+      .gets td.arrow { color: var(--gold-bright); font-weight: 900; width: 34px; }
+      .gets td.buys { color: var(--ink-2); }
+      .gets td.buys b { color: var(--ink); }
+      @media (max-width: 480px) {
+        .gets th, .gets td { padding: 12px 12px; font-size: 15px; }
+        .gets td.bring { white-space: normal; }
+      }
+      .calc {
+        background: var(--panel);
+        border: 1px solid var(--line-gold);
+        border-radius: var(--radius);
+        padding: 22px;
+        max-width: 760px;
+      }
+      .calc h3 { margin: 0 0 6px; font-size: 19px; font-weight: 800; }
+      .calc .calc-sub { margin: 0 0 16px; color: var(--ink-2); font-size: 14.5px; }
+      .calc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      @media (max-width: 480px) { .calc-row { grid-template-columns: 1fr; } }
+      .calc-result {
+        margin: 18px 0 6px;
+        font-size: clamp(19px, 3.4vw, 25px);
+        font-weight: 900;
+        line-height: 1.3;
+      }
+      .calc-result b { color: var(--gold-bright); }
+      .calc-note { margin: 0; color: var(--ink-3); font-size: 13.5px; }
+
+      /* ---------- Ask Corv ---------- */
+      .ask-text {
+        font-size: clamp(17px, 3vw, 20px);
+        line-height: 1.55;
+        color: var(--ink);
+        max-width: 58ch;
+        margin: 0 0 22px;
+      }
+      .hero p.lede {
+        margin: 0 0 26px;
+        font-size: clamp(16px, 2.6vw, 19px);
+        color: var(--ink-2);
+        max-width: 58ch;
+      }
+      .hero .lanes {
+        display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px;
+      }
+      .lane {
+        border: 1px solid var(--line);
+        background: var(--bg-2);
+        border-radius: 999px;
+        padding: 7px 14px;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--ink-2);
+      }
+      .lane b { color: var(--ink); }
+      .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+      .btn {
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 15px;
+        padding: 13px 22px;
+        border-radius: 10px;
+        border: 1px solid transparent;
+        cursor: pointer;
+      }
+      .btn-gold { background: var(--gold); color: #1a1503; }
+      .btn-gold:hover { background: var(--gold-bright); }
+      .btn-ghost { border-color: var(--line-gold); color: var(--gold-bright); background: transparent; }
+      .btn-ghost:hover { background: var(--panel); }
+
+      /* ---------- Spot strip ---------- */
+      .spot {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-2);
+      }
+      .spot .wrap {
+        display: flex; flex-wrap: wrap; gap: 14px 34px;
+        padding-top: 18px; padding-bottom: 18px; align-items: baseline;
+      }
+      .spot .rate { font-size: 15px; }
+      .spot .rate b { font-size: 19px; }
+      .spot .rate .au { color: var(--gold-bright); }
+      .spot .rate .ag { color: var(--silver); }
+      .spot .note { color: var(--ink-3); font-size: 13px; flex-basis: 100%; }
+
+      /* ---------- Sections ---------- */
+      section { padding: 48px 0; }
+      .sec-head { margin-bottom: 26px; }
+      .sec-head h2 {
+        margin: 0 0 8px;
+        font-size: clamp(26px, 5vw, 36px);
+        font-weight: 900;
+        letter-spacing: -0.01em;
+      }
+      .sec-head p { margin: 0; color: var(--ink-2); max-width: 62ch; }
+
+      /* ---------- Catalog ---------- */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 16px;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .card .cat {
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        display: flex; justify-content: space-between; align-items: center; gap: 8px;
+      }
+      .card h3 { margin: 0; font-size: 18.5px; font-weight: 800; line-height: 1.3; }
+      .card .detail { margin: 0; color: var(--ink-2); font-size: 14px; }
+      .prices { border-top: 1px solid var(--line); padding-top: 12px; display: grid; gap: 8px; }
+      .price-row {
+        display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+      }
+      .price-row .label {
+        font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+        display: inline-flex; align-items: center; gap: 7px;
+      }
+      .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex: none; }
+      .dot-cash { background: #7ea36a; }
+      .dot-gold { background: var(--gold); }
+      .dot-silver { background: var(--silver); }
+      .price-row .amt { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 16px; font-weight: 600; text-align: right; }
+      .price-row .amt small { color: var(--ink-3); font-size: 12.5px; font-weight: 400; }
+      .price-row.metal-gold .label { color: var(--gold-bright); }
+      .price-row.metal-gold .amt { color: var(--gold-bright); font-size: 18px; }
+      .price-row.metal-silver .label { color: var(--silver); }
+      .price-row.metal-silver .amt { color: var(--silver); }
+      .save {
+        display: inline-block;
+        background: rgba(212, 169, 44, 0.14);
+        border: 1px solid var(--line-gold);
+        color: var(--gold-bright);
+        font-size: 12px; font-weight: 700;
+        border-radius: 6px; padding: 2px 8px;
+      }
+      .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+      .tag {
+        font-size: 12px; font-weight: 600;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px 10px;
+        color: var(--ink-2);
+        background: var(--bg-2);
+      }
+      .tag.warn { border-color: #5a4433; color: #e0a878; }
+      .card .ebay { font-size: 13.5px; font-weight: 700; text-decoration: none; }
+      .card .ebay:hover { text-decoration: underline; }
+
+      /* ---------- How it works ---------- */
+      .steps { display: grid; gap: 0; counter-reset: step; max-width: 760px; }
+      .step {
+        display: grid; grid-template-columns: 52px 1fr; gap: 16px;
+        padding: 20px 0; border-bottom: 1px solid var(--line);
+      }
+      .step:last-child { border-bottom: none; }
+      .step .num {
+        width: 44px; height: 44px; border-radius: 50%;
+        border: 1px solid var(--line-gold);
+        color: var(--gold-bright);
+        font-family: "IBM Plex Mono", monospace;
+        font-weight: 600; font-size: 17px;
+        display: flex; align-items: center; justify-content: center;
+        background: var(--bg-2);
+      }
+      .step h3 { margin: 4px 0 6px; font-size: 18px; font-weight: 800; }
+      .step p { margin: 0; color: var(--ink-2); max-width: 56ch; }
+
+      /* ---------- Rules ---------- */
+      .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+      .rule {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 20px;
+      }
+      .rule h3 { margin: 0 0 10px; font-size: 16.5px; font-weight: 800; }
+      .rule h3 .au { color: var(--gold-bright); }
+      .rule h3 .ag { color: var(--silver); }
+      .rule ul { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 14.5px; display: grid; gap: 6px; }
+      .rule p { margin: 0; color: var(--ink-2); font-size: 14.5px; }
+
+      /* ---------- Offer form ---------- */
+      .offer { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+      @media (max-width: 760px) { .offer-grid { grid-template-columns: 1fr; } }
+      form { display: grid; gap: 14px; }
+      label.field { display: grid; gap: 6px; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
+      input, select, textarea {
+        font: inherit; font-size: 15.5px; font-weight: 500;
+        letter-spacing: normal; text-transform: none;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        color: var(--ink);
+        padding: 11px 13px;
+        width: 100%;
+      }
+      input:focus, select:focus, textarea:focus { outline: 2px solid var(--gold-deep); outline-offset: 1px; }
+      .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+      .preview-box {
+        background: var(--panel);
+        border: 1px solid var(--line-gold);
+        border-radius: var(--radius);
+        padding: 20px;
+      }
+      .preview-box h3 { margin: 0 0 6px; font-size: 16px; font-weight: 800; }
+      .preview-box p { margin: 0 0 12px; color: var(--ink-3); font-size: 13.5px; }
+      .preview-box textarea { min-height: 190px; resize: vertical; background: var(--bg); font-family: "IBM Plex Mono", monospace; font-size: 13.5px; line-height: 1.6; }
+      .preview-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; align-items: center; }
+      .copied { color: var(--gold-bright); font-weight: 700; font-size: 14px; display: none; }
+
+      /* ---------- Order form extras ---------- */
+      [hidden] { display: none !important; }
+      .lock { color: var(--gold-bright); font-weight: 800; }
+      .trade-btn { margin-top: 2px; text-align: center; font-size: 14.5px; padding: 11px 18px; }
+      fieldset.addr {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 16px;
+        margin: 0;
+        display: grid;
+        gap: 14px;
+      }
+      fieldset.addr legend {
+        font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+        color: var(--ink-2); padding: 0 6px;
+      }
+      .field-note { margin: -6px 0 0; color: var(--ink-3); font-size: 13px; }
+      #silver-note { color: #e0a878; }
+      .notice {
+        background: var(--panel);
+        border: 1px solid var(--line-gold);
+        border-radius: var(--radius);
+        padding: 16px 18px;
+        font-size: 15px;
+        color: var(--ink-2);
+      }
+      .notice b { color: var(--ink); }
+      .thanks {
+        background: var(--panel);
+        border: 1px solid var(--line-gold);
+        border-radius: var(--radius);
+        padding: 26px;
+        max-width: 760px;
+      }
+      .thanks h3 { margin: 0 0 10px; font-size: 22px; font-weight: 900; color: var(--gold-bright); }
+      .thanks p { margin: 0 0 16px; color: var(--ink-2); max-width: 58ch; }
+      .mini-steps { border-top: 1px solid var(--line); margin-top: 16px; padding-top: 14px; display: grid; gap: 6px; }
+      .mini-steps p { margin: 0; font-size: 14px; color: var(--ink-2); }
+      .mini-steps b { color: var(--gold-bright); }
+
+      footer {
+        padding: 34px 0 46px;
+        color: var(--ink-3);
+        font-size: 13.5px;
+      }
+      footer .wrap { display: grid; gap: 8px; }
+      footer b { color: var(--ink-2); }
+    </style>
+  </head>
+  <body>
+
+    <!-- ================= EBAY FAST LANE ================= -->
+    <div class="ebay-strip">
+      <div class="wrap">
+        <p class="cash-line"><b>Cash?</b> Want it in cash instead? All my items are on eBay &rarr;</p>
+        <a class="btn-ebay" href="https://www.ebay.com/sch/i.html?_ssn=clavenesto" target="_blank" rel="noopener">Shop my eBay</a>
+        <p class="gold-line">Gold? Trade right here — 20% off, below.</p>
+      </div>
+    </div>
+
+    <!-- ================= HERO ================= -->
+    <header class="hero">
+      <div class="wrap">
+        <span class="kicker">Trade for Gold</span>
+        <p class="brand-name">Corv&rsquo;s Gold Trade</p>
+        <h1>Your gold is good here — <span class="gold">20% off</span> when you pay in gold.</h1>
+        <p class="lede">
+          Real tools, collectibles, and parts from an eBay seller with a track record — priced in cash,
+          and cheaper in metal. Pay in gold and take 20% off the cash price. Silver works too on
+          anything $50 and under.
+        </p>
+        <div class="lanes">
+          <span class="lane"><b>EGO 56V</b> tools &amp; parts</span>
+          <span class="lane"><b>Collectibles</b> — Funko Pop lots</span>
+          <span class="lane"><b>Auto parts</b> — tested &amp; working</span>
+          <span class="lane"><b>Repair</b> — mail-in EGO diagnostic</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-gold" href="#catalog">See the items</a>
+          <a class="btn btn-ebay" href="https://www.ebay.com/sch/i.html?_ssn=clavenesto" target="_blank" rel="noopener">Cash? Buy it on eBay</a>
+          <a class="btn btn-ghost" href="#offer">Make a trade offer</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= THE SIMPLE VERSION ================= -->
+    <section>
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>The Simple Version</h2>
+        </div>
+        <div class="simple-lines">
+          <p>Everything has <span class="gold">TWO prices</span>: the cash price, and the gold price.</p>
+          <p>The gold price is <span class="gold">ALWAYS 20% less</span> than cash. Same item, less money, if it&rsquo;s gold.</p>
+          <p>Don&rsquo;t have gold? <span class="silver">Silver works</span> on anything $50 and under.</p>
+        </div>
+
+        <h3 class="gets-title">What your gold gets you</h3>
+        <table class="gets">
+          <thead>
+            <tr><th scope="col">You bring</th><th scope="col" aria-label="gets you"></th><th scope="col">It buys</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="bring">10 Goldbacks<small>about 0.31 g of gold</small></td>
+              <td class="arrow">&rarr;</td>
+              <td class="buys">about <b>$50 worth</b> of stuff on this page</td>
+            </tr>
+            <tr>
+              <td class="bring">20 Goldbacks<small>about 0.62 g of gold</small></td>
+              <td class="arrow">&rarr;</td>
+              <td class="buys">the <b>ST1510T trimmer</b> ($90 cash)</td>
+            </tr>
+            <tr>
+              <td class="bring">1 gram of gold</td>
+              <td class="arrow">&rarr;</td>
+              <td class="buys">about <b>$162 worth</b> of stuff on this page</td>
+            </tr>
+            <tr>
+              <td class="bring">1 oz of silver</td>
+              <td class="arrow">&rarr;</td>
+              <td class="buys">about <b>$68 worth</b> of small stuff ($50-and-under items)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="calc">
+          <h3>Do the math in 10 seconds</h3>
+          <p class="calc-sub">Tell it what you&rsquo;ve got — it tells you what that buys here, 20% discount included.</p>
+          <div class="calc-row">
+            <label class="field">I&rsquo;m paying in
+              <select id="c-metal">
+                <option value="grams">Gold — grams</option>
+                <option value="goldbacks">Goldbacks — how many</option>
+                <option value="silver">Silver — troy ounces</option>
+              </select>
+            </label>
+            <label class="field">Amount
+              <input type="number" id="c-amount" min="0" step="any" inputmode="decimal" placeholder="e.g. 20" />
+            </label>
+          </div>
+          <p class="calc-result" id="c-result">Type an amount and see what it buys here.</p>
+          <p class="calc-note">Figured at Oct 22, 2026 spot — gold $129.39/gram, silver $54.59/troy oz. Gold price locks at spot the day your gold arrives.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SPOT RATES ================= -->
+    <div class="spot">
+      <div class="wrap">
+        <span class="rate mono"><span class="au">GOLD</span> <b>$4,025</b> / troy oz · $129.39 / gram</span>
+        <span class="rate mono"><span class="ag">SILVER</span> <b>$54.59</b> / troy oz</span>
+        <span class="note">Reference spot rates, Oct 22, 2026 — your price in metal locks at spot on the day your metal is received, so the exact gram/ounce amount is set then. Metal prices below are shown at these reference rates with the 20% discount already applied.</span>
+      </div>
+    </div>
+
+    <!-- ================= CATALOG ================= -->
+    <section id="catalog">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>The catalog</h2>
+          <p>Every item lists its cash price and its price in gold — 20% off, figured at spot. Items $50 and under also take silver. Cash is always fine too: the same items are live on eBay.</p>
+        </div>
+        <div class="grid" id="catalog-grid"></div>
+      </div>
+    </section>
+
+    <!-- ================= HOW IT WORKS ================= -->
+    <section style="padding-top:0;">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>How a trade works</h2>
+          <p>Simple, and the metal gets checked before anything ships. No surprises on either side.</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="num">1</div>
+            <div>
+              <h3>Pick an item</h3>
+              <p>Find what you want in the catalog. Note its gold price (grams of pure gold) or, on items $50 and under, its silver price (troy ounces).</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <div>
+              <h3>Send a trade offer</h3>
+              <p>Use the offer form below. Name the item, which metal you're paying with, and the form it's in — Goldbacks, a coin, a bar in assay, or silver rounds. Pick how you want the item: shipped in the US, shipped to South Korea, local pickup, or local drop-off.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <div>
+              <h3>Metal is verified first</h3>
+              <p>Goldbacks are checked by UV light and serial number; coins and bars are tested. The price in metal locks at spot on the day your metal is received. Your item ships only after the metal checks out — that protects both of us.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">4</div>
+            <div>
+              <h3>Get it your way</h3>
+              <p>US shipping, South Korea shipping on collectibles and bare tools/parts, local pickup, or local drop-off by the seller. Local trades are checked in person at the meet.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">5</div>
+            <div>
+              <h3>Cash still works</h3>
+              <p>Every item with an eBay link can be bought for cash there, exactly like always. This page is just the gold lane — same seller, same items.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RULES ================= -->
+    <section style="padding-top:0;">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>The rules, plain and honest</h2>
+        </div>
+        <div class="rules-grid">
+          <div class="rule">
+            <h3><span class="au">Gold</span> accepted</h3>
+            <ul>
+              <li>Goldbacks (checked by UV + serial)</li>
+              <li>US and Canadian bullion coins — Eagles, Maples</li>
+              <li>Small bars in assay</li>
+              <li>Priced at spot on the day your gold is received — gold moves daily</li>
+            </ul>
+          </div>
+          <div class="rule">
+            <h3><span class="ag">Silver</span> accepted — items $50 and under</h3>
+            <ul>
+              <li>Silver rounds</li>
+              <li>90% US coins (pre-1965)</li>
+              <li>Silver bars</li>
+              <li>Also priced at spot on the day it's received</li>
+            </ul>
+          </div>
+          <div class="rule">
+            <h3>Shipping &amp; batteries</h3>
+            <ul>
+              <li>EGO lithium batteries are ground-shipping only — they <b>cannot</b> ship to South Korea (no air freight, period)</li>
+              <li>Korea shipping is for collectibles and bare tools/parts only</li>
+              <li>Bulky items are local pickup/drop-off only, as marked</li>
+            </ul>
+          </div>
+          <div class="rule">
+            <h3>No returns</h3>
+            <p>All trades and sales are final — the seller's standing policy on eBay too. Items are described as tested and working where it says so, and the metal is verified before your item ships, so both sides are covered up front.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ASK CORV ================= -->
+    <section style="padding-top:0;">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Ask Corv — don&rsquo;t know what to get?</h2>
+        </div>
+        <p class="ask-text">Not sure what you need? Message me what you&rsquo;re working on and your budget in gold or silver. I&rsquo;ll tell you straight what to buy next — and if I don&rsquo;t have it, I&rsquo;ll hunt it for you.</p>
+        <a class="btn btn-gold" href="#offer" id="ask-corv-btn">Ask Corv</a>
+      </div>
+    </section>
+
+    <!-- ================= HOW PAYING IN GOLD WORKS ================= -->
+    <section style="padding-top:0;">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>How paying in gold works</h2>
+          <p>Five steps, in order. The metal always moves first and gets verified — then your item ships.</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="num">1</div>
+            <div>
+              <h3>Send the order form</h3>
+              <p>Fill out the order form below and send it. It lands straight in our inbox — no account to make, nothing to pay yet.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <div>
+              <h3>Get your exact amount by email</h3>
+              <p>You&rsquo;ll get an email from corvletsgo@gmail.com with the exact amount of metal to send and where to send it. <span class="lock">Your price in metal locks at spot on the day your metal is received.</span> Don&rsquo;t send any metal before that email.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <div>
+              <h3>Send the metal</h3>
+              <p>PAX Gold (PAXG) goes by crypto transfer. Goldbacks, fractional gold coins or bars, and silver go by mail — always with tracking.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">4</div>
+            <div>
+              <h3>We verify it</h3>
+              <p>Goldbacks are checked by UV light and serial number, coins and bars are tested, and PAXG is confirmed on-chain. Your item ships only after the metal checks out — that protects both of us.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">5</div>
+            <div>
+              <h3>Your item ships with tracking</h3>
+              <p>We print the shipping label from the address you gave us on the form and send you the tracking. EGO batteries ship ground-only inside the US.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ================= ORDER FORM ================= -->
+    <section class="offer" id="offer">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Start a gold trade</h2>
+          <p>Send this form and the order lands straight in our inbox. You&rsquo;ll get an email back from <b>corvletsgo@gmail.com</b> with the exact amount of metal and where to send it — nothing moves, on either side, until that email.</p>
+        </div>
+
+        <div class="thanks" id="order-thanks" hidden>
+          <h3>Order received — check your inbox</h3>
+          <p>Thanks — your order is in. You&rsquo;ll get an email from <b>corvletsgo@gmail.com</b> with the exact metal amount and where to send it. <b>Don&rsquo;t send any metal until that email arrives.</b> Once your metal lands and is verified, your item ships with tracking.</p>
+          <button type="button" class="btn btn-ghost" id="thanks-again">Send another order</button>
+        </div>
+
+        <div class="offer-grid" id="order-grid">
+          <form id="offer-form" action="https://formsubmit.co/corvletsgo@gmail.com" method="POST">
+            <!-- FormSubmit controls: subject is set per order by the script below -->
+            <input type="hidden" name="_subject" id="fs-subject" value="GOLD TRADE ORDER" />
+            <input type="hidden" name="_next" id="fs-next" value="" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <label class="field">What is this?
+              <select id="f-type" name="Order type">
+                <option value="Trade for an item">Trade for an item</option>
+                <option value="Ask Corv (recommendation)">Ask Corv (recommendation)</option>
+                <option value="Item hunt request">Request an item (hunt it for me)</option>
+              </select>
+            </label>
+            <div class="form-row">
+              <label class="field">Your full name
+                <input type="text" id="f-name" name="Buyer name" required placeholder="e.g. Alex Rivera" />
+              </label>
+              <label class="field">Your email
+                <input type="email" id="f-email" name="email" required placeholder="you@example.com" />
+              </label>
+            </div>
+            <label class="field" id="item-field">Item you want
+              <select id="f-item" name="Item"></select>
+            </label>
+            <label class="field">Paying in
+              <select id="f-metal" name="Paying in">
+                <option value="PAX Gold token (PAXG)">PAX Gold token (PAXG) — crypto transfer</option>
+                <option value="Goldbacks">Goldbacks — by mail</option>
+                <option value="Fractional gold coin or bar">Fractional gold coin or bar — by mail</option>
+                <option value="Silver">Silver — by mail (items $50 and under)</option>
+              </select>
+            </label>
+            <p class="field-note" id="silver-note" hidden>Heads up: silver only works on items $50 and under — for this item, pick one of the gold options.</p>
+            <label class="field">How you want the item
+              <select id="f-delivery" name="Delivery">
+                <option value="Ship it to me in the US">Ship it to me in the US</option>
+                <option value="Ship it to me in South Korea">Ship it to me in South Korea</option>
+                <option value="Local pickup">Local pickup</option>
+                <option value="Local drop-off by the seller">Local drop-off by the seller</option>
+                <option value="Mail-in service (I ship my tool in)">Mail-in service (I ship my tool in)</option>
+              </select>
+            </label>
+            <fieldset class="addr">
+              <legend>Ship-to address</legend>
+              <label class="field">Street address
+                <input type="text" id="a-street" name="Ship-to street" placeholder="Street and number, apt/unit if any" />
+              </label>
+              <div class="form-row">
+                <label class="field">City
+                  <input type="text" id="a-city" name="Ship-to city" />
+                </label>
+                <label class="field">State / Province
+                  <input type="text" id="a-state" name="Ship-to state" />
+                </label>
+              </div>
+              <div class="form-row">
+                <label class="field">ZIP / Postal code
+                  <input type="text" id="a-zip" name="Ship-to ZIP" />
+                </label>
+                <label class="field">Country
+                  <select id="a-country" name="Ship-to country">
+                    <option value="United States">United States</option>
+                    <option value="South Korea">South Korea</option>
+                    <option value="Other">Other — ask first</option>
+                  </select>
+                </label>
+              </div>
+              <p class="field-note">We ship within the US and to South Korea. EGO batteries are ground-only inside the US — they can&rsquo;t fly, so batteries can&rsquo;t ship to South Korea. Picking up locally? You can leave this blank.</p>
+            </fieldset>
+            <label class="field"><span id="note-label">Notes (optional)</span>
+              <textarea id="f-note" name="Notes" rows="3" placeholder="Questions, timing, where you&rsquo;re located…"></textarea>
+            </label>
+            <div class="notice">
+              Your gold ships first and gets verified; then your item ships with tracking. You&rsquo;ll get an email from corvletsgo@gmail.com with the exact metal amount and where to send it — <b>don&rsquo;t send metal before that email.</b>
+            </div>
+            <button type="submit" class="btn btn-gold" id="send-btn">Send my order</button>
+          </form>
+          <div class="preview-box">
+            <h3>Your order at a glance</h3>
+            <p>Updates as you fill in the form. Metal amounts are figured at the reference spot rates — the exact amount locks at spot the day your metal is received.</p>
+            <div id="order-summary"></div>
+            <div class="mini-steps">
+              <p><b>1.</b> Send this form</p>
+              <p><b>2.</b> Get the email with your exact amount</p>
+              <p><b>3.</b> Send the metal (with tracking)</p>
+              <p><b>4.</b> We verify it</p>
+              <p><b>5.</b> Your item ships with tracking</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <span><b>Corv&rsquo;s Gold Trade</b> — the metal lane of an eBay seller (clavenesto). Cash listings stay on eBay; this page is for gold and silver trades.</span>
+        <span>Also on Facebook: Corv&rsquo;s Gold Trade (page coming online) and on eBay: clavenesto.</span>
+        <span>Metal prices shown at reference spot rates from Oct 22, 2026 and lock at spot on the day your metal is received.</span>
+      </div>
+    </footer>
+
+    <script>
+      // Catalog data — real inventory, prices per the owner's plan.
+      // goldOz value = metal-dollar price after the 20% discount; grams computed at $129.39/g, silver oz at $54.59/ozt.
+      // Reference spot: Oct 22, 2026 evening refresh (gold ~$4,025/ozt, silver ~$54.59/ozt).
+      // Actual metal owed locks at spot on the day the metal is received — see price-refresh-2026-10-22-evening.md.
+      var GOLD_PER_GRAM = 129.39;
+      var SILVER_PER_OZ = 54.59;
+
+      var ITEMS = [
+        {
+          cat: "EGO Trimmers",
+          name: "EGO ST1510T 15\u2033 String Trimmer",
+          detail: "January 2025 build. Tested and working, tool only.",
+          cash: 90, gold: true, silver: false,
+          tags: ["US shipping", "Local pickup / drop-off"],
+          ebay: "237134241608"
+        },
+        {
+          cat: "EGO Trimmers",
+          name: "EGO ST1510T 15\u2033 String Trimmer",
+          detail: "August 2025 build. Tested and working, tool only.",
+          cash: 90, gold: true, silver: false,
+          tags: ["US shipping", "Local pickup / drop-off"],
+          ebay: "237134256864"
+        },
+        {
+          cat: "EGO Trimmers",
+          name: "EGO ST1610T 16\u2033 POWERLOAD Trimmer",
+          detail: "Carbon fiber shaft, tool only.",
+          cash: 100, gold: true, silver: false,
+          tags: ["US shipping", "Local pickup / drop-off"],
+          ebay: "237134262191"
+        },
+        {
+          cat: "EGO Chainsaw Parts",
+          name: "EGO AG1600 16\u2033 Chainsaw Guide Bar",
+          detail: "Genuine OEM, brand new. Quantity 2 available.",
+          cash: 34.99, gold: true, silver: true,
+          tags: ["US shipping", "Ships to South Korea"],
+          ebay: "236119843694"
+        },
+        {
+          cat: "EGO Chainsaw Parts",
+          name: "EGO AG1800 18\u2033 Chainsaw Guide Bar",
+          detail: "Genuine OEM, brand new.",
+          cash: 34.99, gold: true, silver: true,
+          tags: ["US shipping", "Ships to South Korea"],
+          ebay: "236119850681"
+        },
+        {
+          cat: "Collectibles",
+          name: "Funko Pop Lot — 10-Piece Themed Lot",
+          detail: "Ten figures, one theme. A gold-sized lot, priced to move in metal.",
+          cash: 50, gold: true, silver: true,
+          tags: ["US shipping", "Ships to South Korea"],
+          ebay: null
+        },
+        {
+          cat: "Collectibles",
+          name: "Funko Pop Mystery 5-Pack",
+          detail: "Five figures, sealed mystery mix.",
+          cash: 39.99, gold: true, silver: true,
+          tags: ["US shipping", "Ships to South Korea"],
+          ebay: null
+        },
+        {
+          cat: "Repair Service",
+          name: "EGO 56V Repair Diagnostic",
+          detail: "Mail-in diagnostic for EGO 56V tools and batteries.",
+          cash: 29.99, gold: true, silver: true,
+          tags: ["Mail-in · US"],
+          ebay: "237120328282"
+        },
+        {
+          cat: "Auto Parts",
+          name: "2012 Honda CR-V Radio",
+          detail: "Tested, works.",
+          cash: 40, gold: true, silver: true,
+          tags: ["US shipping", "Ships to South Korea"],
+          ebay: "236324129691"
+        },
+        {
+          cat: "Auto Parts",
+          name: "Delphi 150A Alternator",
+          detail: "For GMC Envoy / Chevy Trailblazer 4.2L.",
+          cash: 50, gold: true, silver: true,
+          tags: ["US shipping", "Local pickup / drop-off"],
+          ebay: "236168960767"
+        },
+        {
+          cat: "Home & Fitness",
+          name: "UREVO Strol 2E Folding Treadmill Walking Pad",
+          detail: "Bulky — local only, no shipping.",
+          cash: 130, gold: true, silver: false,
+          tags: ["Local pickup / drop-off only"],
+          ebay: "236819172255"
+        }
+      ];
+
+      function money(n) {
+        return "$" + n.toFixed(2).replace(/\.00$/, "");
+      }
+      function metalDollars(cash) { return cash * 0.8; }
+
+      function priceSummary(it) {
+        var md = metalDollars(it.cash);
+        var parts = [];
+        if (it.gold) parts.push((md / GOLD_PER_GRAM).toFixed(2) + " g gold");
+        if (it.silver) parts.push((md / SILVER_PER_OZ).toFixed(2) + " oz silver");
+        return parts.join(" or ");
+      }
+
+      // ---------- Render catalog ----------
+      var grid = document.getElementById("catalog-grid");
+      ITEMS.forEach(function (it, idx) {
+        var md = metalDollars(it.cash);
+        var rows = "";
+        rows += '<div class="price-row"><span class="label"><span class="dot dot-cash"></span>Cash</span>' +
+                '<span class="amt">' + money(it.cash) + '</span></div>';
+        if (it.gold) {
+          rows += '<div class="price-row metal-gold"><span class="label"><span class="dot dot-gold"></span>Gold −20%</span>' +
+                  '<span class="amt">' + (md / GOLD_PER_GRAM).toFixed(2) + ' g <small>(' + money(md) + ' at spot)</small></span></div>';
+        }
+        if (it.silver) {
+          rows += '<div class="price-row metal-silver"><span class="label"><span class="dot dot-silver"></span>Silver −20%</span>' +
+                  '<span class="amt">' + (md / SILVER_PER_OZ).toFixed(2) + ' oz <small>(' + money(md) + ' at spot)</small></span></div>';
+        }
+        var tags = it.tags.map(function (t, i) {
+          return '<span class="tag' + (it.warnTag === i ? ' warn' : '') + '">' + t + '</span>';
+        }).join("");
+        var ebay = it.ebay
+          ? '<a class="ebay" href="https://www.ebay.com/itm/' + it.ebay + '" target="_blank" rel="noopener">Buy it for cash on eBay →</a>'
+          : "";
+        var trade = '<button type="button" class="btn btn-gold trade-btn" data-idx="' + idx + '">' +
+          (it.silver ? "Trade in gold or silver" : "Trade in gold") + '</button>';
+        var card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML =
+          '<div class="cat"><span>' + it.cat + '</span></div>' +
+          '<h3>' + it.name + '</h3>' +
+          '<p class="detail">' + it.detail + '</p>' +
+          '<div class="prices">' + rows + '</div>' +
+          '<div><span class="save">Save ' + money(it.cash - md) + ' paying in metal</span></div>' +
+          '<div class="tags">' + tags + '</div>' +
+          trade +
+          ebay;
+        grid.appendChild(card);
+      });
+
+      // ---------- Order form (submits to FormSubmit -> corvletsgo@gmail.com) ----------
+      var itemSelect = document.getElementById("f-item");
+      var typeSelect = document.getElementById("f-type");
+
+      function itemDescriptor(it, idx) {
+        var dup = ITEMS.some(function (o, i) { return i !== idx && o.name === it.name; });
+        return dup ? it.name + " (" + it.detail.split(".")[0] + ")" : it.name;
+      }
+
+      var generalOpt = document.createElement("option");
+      generalOpt.value = "General — help me choose / a question";
+      generalOpt.textContent = "Not sure yet — help me choose";
+      itemSelect.appendChild(generalOpt);
+      ITEMS.forEach(function (it, idx) {
+        var opt = document.createElement("option");
+        opt.value = itemDescriptor(it, idx);
+        opt.setAttribute("data-idx", idx);
+        opt.textContent = itemDescriptor(it, idx) + " — " + money(it.cash) + " cash";
+        itemSelect.appendChild(opt);
+      });
+
+      function chosenItem() {
+        var opt = itemSelect.options[itemSelect.selectedIndex];
+        if (!opt || opt.getAttribute("data-idx") === null) return null;
+        return ITEMS[parseInt(opt.getAttribute("data-idx"), 10)];
+      }
+
+      function updateOrder() {
+        var type = typeSelect.value;
+        var it = chosenItem();
+        var metal = document.getElementById("f-metal").value;
+        var delivery = document.getElementById("f-delivery").value;
+
+        // Subject line for the order email: "GOLD TRADE ORDER — <item>".
+        var subj;
+        if (type === "Ask Corv (recommendation)") subj = "GOLD TRADE ORDER — Ask Corv (recommendation)";
+        else if (type === "Item hunt request") subj = "GOLD TRADE ORDER — Item hunt request";
+        else subj = "GOLD TRADE ORDER — " + (it ? itemSelect.value : "General / help me choose");
+        document.getElementById("fs-subject").value = subj;
+
+        // The notes field's job changes per type.
+        var noteLabel = document.getElementById("note-label");
+        var noteInput = document.getElementById("f-note");
+        if (type === "Ask Corv (recommendation)") {
+          noteLabel.textContent = "What you're working on + your budget";
+          noteInput.placeholder = "e.g. Need a trimmer for a big yard — budget about 1 gram of gold";
+        } else if (type === "Item hunt request") {
+          noteLabel.textContent = "The item you want Corv to hunt down";
+          noteInput.placeholder = "e.g. EGO 56V leaf blower, working or fixable";
+        } else {
+          noteLabel.textContent = "Notes (optional)";
+          noteInput.placeholder = "Questions, timing, where you're located…";
+        }
+
+        // Silver only works on items $50 and under.
+        document.getElementById("silver-note").hidden = !(it && !it.silver && metal === "Silver");
+
+        // Ship-to address is required only when we're shipping the item.
+        var shipping = delivery.indexOf("Ship it") === 0;
+        ["a-street", "a-city", "a-state", "a-zip"].forEach(function (id) {
+          document.getElementById(id).required = shipping;
+        });
+
+        // Live summary panel.
+        var sum = document.getElementById("order-summary");
+        if (it) {
+          sum.innerHTML =
+            '<div class="price-row"><span class="label">Item</span><span class="amt">' + itemSelect.value + '</span></div>' +
+            '<div class="price-row"><span class="label">Cash price</span><span class="amt">' + money(it.cash) + '</span></div>' +
+            '<div class="price-row metal-gold"><span class="label">In metal (−20%)</span><span class="amt">' + priceSummary(it) + '</span></div>' +
+            '<div class="price-row"><span class="label">Paying in</span><span class="amt">' + metal + '</span></div>' +
+            '<div class="price-row"><span class="label">Delivery</span><span class="amt">' + delivery + '</span></div>';
+        } else {
+          sum.innerHTML = '<p style="margin:0;color:var(--ink-2);font-size:14.5px;">No specific item picked — tell us what you&rsquo;re after in the notes and Corv will price it in metal and email you back.</p>';
+        }
+      }
+      ["f-type", "f-item", "f-metal", "f-delivery"].forEach(function (id) {
+        var el = document.getElementById(id);
+        el.addEventListener("input", updateOrder);
+        el.addEventListener("change", updateOrder);
+      });
+      updateOrder();
+
+      // Catalog trade buttons pre-pick the item and jump to the form.
+      grid.addEventListener("click", function (e) {
+        var btn = e.target && e.target.closest ? e.target.closest(".trade-btn") : null;
+        if (!btn) return;
+        typeSelect.value = "Trade for an item";
+        itemSelect.selectedIndex = parseInt(btn.getAttribute("data-idx"), 10) + 1;
+        updateOrder();
+        document.getElementById("offer").scrollIntoView({ behavior: "smooth" });
+        setTimeout(function () { document.getElementById("f-name").focus({ preventScroll: true }); }, 500);
+      });
+
+      // "Ask Corv" button pre-picks the recommendation type in the form.
+      document.getElementById("ask-corv-btn").addEventListener("click", function () {
+        typeSelect.value = "Ask Corv (recommendation)";
+        itemSelect.selectedIndex = 0;
+        updateOrder();
+      });
+
+      // FormSubmit returns the buyer to this page with ?sent=1 -> thank-you state.
+      var base = (location.protocol === "http:" || location.protocol === "https:")
+        ? location.origin + location.pathname
+        : "https://corvletsgo.com/";
+      document.getElementById("fs-next").value = base + "?sent=1#offer";
+      if (new URLSearchParams(location.search).get("sent") === "1") {
+        document.getElementById("order-grid").hidden = true;
+        document.getElementById("order-thanks").hidden = false;
+        if (window.history && history.replaceState) {
+          history.replaceState(null, "", location.pathname + "#offer");
+        }
+      }
+      document.getElementById("thanks-again").addEventListener("click", function () {
+        document.getElementById("order-thanks").hidden = true;
+        document.getElementById("order-grid").hidden = false;
+      });
+
+      // Prevent double-submits.
+      document.getElementById("offer-form").addEventListener("submit", function () {
+        var b = document.getElementById("send-btn");
+        b.disabled = true;
+        b.textContent = "Sending…";
+      });
+
+      // ---------- Simple calculator ----------
+      // 1 Goldback = 1/1000 troy oz of gold = 0.0311 g.
+      var GOLDBACK_GRAMS = 0.0311;
+      function runCalc() {
+        var unit = document.getElementById("c-metal").value;
+        var amt = parseFloat(document.getElementById("c-amount").value);
+        var out = document.getElementById("c-result");
+        if (isNaN(amt) || amt <= 0) {
+          out.textContent = "Type an amount and see what it buys here.";
+          return;
+        }
+        var metalValue;
+        if (unit === "grams") metalValue = amt * GOLD_PER_GRAM;
+        else if (unit === "goldbacks") metalValue = amt * GOLDBACK_GRAMS * GOLD_PER_GRAM;
+        else metalValue = amt * SILVER_PER_OZ;
+        var buys = metalValue / 0.8; // 20% off means metal covers cash price at 80 cents on the dollar
+        var covered = 0;
+        ITEMS.forEach(function (it) {
+          var ok = unit === "silver" ? it.silver : it.gold;
+          if (ok && metalDollars(it.cash) <= metalValue + 0.001) covered++;
+        });
+        out.innerHTML = "On this page that buys you up to <b>" + money(Math.round(buys)) + "</b> of stuff" +
+          (covered ? " — enough metal for " + covered + " of the items in the catalog, outright." : ".");
+      }
+      document.getElementById("c-metal").addEventListener("change", runCalc);
+      document.getElementById("c-amount").addEventListener("input", runCalc);
+
+    </script>
+  </body>
+</html>
